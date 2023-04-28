@@ -1,15 +1,36 @@
-Source: template-repository
-Section: unknown
+Source: libmodule-implementation-perl
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: gregor herrmann <gregoa@debian.org>,
+           Angel Abad <angel@debian.org>,
+           Florian Schlichting <fsfs@debian.org>
+Section: perl
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Build-Depends: debhelper-compat (= 13)
+Build-Depends-Indep: libmodule-runtime-perl,
+                     libtest-fatal-perl,
+                     libtest-requires-perl,
+                     libtest-taint-perl,
+                     libtry-tiny-perl,
+                     perl
+Standards-Version: 3.9.5
+Vcs-Browser: https://salsa.debian.org/perl-team/modules/packages/libmodule-implementation-perl
+Vcs-Git: https://salsa.debian.org/perl-team/modules/packages/libmodule-implementation-perl.git
+Homepage: https://metacpan.org/release/Module-Implementation
+Testsuite: autopkgtest-pkg-perl
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: libmodule-implementation-perl
+Architecture: all
+Depends: ${misc:Depends},
+         ${perl:Depends},
+         libmodule-runtime-perl,
+         libtry-tiny-perl
+Description: module for loading one of several alternate implementations of a module
+ Module::Implementation abstracts out the process of choosing one of several
+ underlying implementations for a module. This can be used to provide XS and
+ pure Perl implementations of a module, or it could be used to load an
+ implementation for a given OS or any other case of needing to provide
+ multiple implementations.
+ .
+ This module is only useful when you know all the implementations ahead of
+ time. If you want to load arbitrary implementations then you probably want
+ something like a plugin system, not this module.
